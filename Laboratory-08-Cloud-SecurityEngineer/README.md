@@ -1,21 +1,26 @@
+# Laboratory 08: Cloud Security Engineer
 
-Laboratory 08: The Cloud Security Engineer
-Mission Overview
+## Mission Overview
 
-This laboratory activity focuses on securing a Linux server using the Uncomplicated Firewall (UFW). The mission involves deploying an Nginx web application, checking network access, and configuring firewall rules to allow legitimate traffic while blocking unauthorized incoming connections.
+This laboratory activity focuses on securing a Linux server using UFW (Uncomplicated Firewall). I deployed an Nginx web server container, checked its accessibility, and configured firewall rules to control incoming network traffic. The main goal was to apply the principle of least privilege and a default deny policy to improve server security.
 
-Objectives
-Understand the Principle of Least Privilege (PoLP).
-Identify the attack surface of a virtual machine.
-Apply a Default Deny firewall policy.
-Allow SSH access on port 22 and web application traffic on port 8080.
-Verify firewall rules and test the web application using curl.
-Document security configurations and maintain a GitHub portfolio.
-Commands Executed
-# Run the Nginx web application
+## Objectives
+
+- Understand the Principle of Least Privilege (PoLP).
+- Identify the attack surface of a virtual machine.
+- Configure UFW with a default deny incoming policy.
+- Allow SSH traffic for remote administration.
+- Allow TCP traffic on port 8080 for the web application.
+- Document firewall configurations and security practices.
+- Maintain my GitHub Cloud Computing portfolio.
+
+## Commands Executed
+
+```bash
+# Deploy the Nginx web application
 docker run -d --name secure-web-app -p 8080:80 nginx
 
-# Test the web application
+# Verify the web application
 curl http://localhost:8080
 
 # Allow SSH connections
@@ -25,13 +30,13 @@ sudo ufw allow ssh
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 
-# Enable UFW
+# Enable the firewall
 sudo ufw enable
 
 # Check firewall status
 sudo ufw status verbose
 
-# Allow TCP traffic on port 8080
+# Allow the web application port
 sudo ufw allow 8080/tcp
 
 # Display numbered firewall rules
@@ -39,22 +44,26 @@ sudo ufw status numbered
 
 # Test the web application again
 curl http://localhost:8080
+```
 
-Skills Learned
-Basic Linux server security
-Firewall configuration using UFW
-Docker container deployment
-Network port management
-Web application testing using curl
-Markdown documentation
-Git and GitHub portfolio management
-Screenshots
+## Skills Learned
 
-The screenshots/ folder contains evidence collected during the laboratory activity.
+- Deploying an Nginx container using Docker.
+- Testing web applications using curl.
+- Configuring a Linux host-based firewall.
+- Applying default deny and least privilege security principles.
+- Managing network ports and firewall rules.
+- Writing technical documentation using Markdown.
+- Organizing and maintaining a GitHub portfolio.
 
-vulnerable-app-running.png
-firewall-activated.png
-firewall-port-allowed.png
-Conclusion
+## Screenshots
 
-This activity demonstrates how a host-based firewall can reduce a server's attack surface by controlling incoming network connections. Applying the Default Deny policy and allowing only necessary services helps improve the security of a cloud server.
+The following screenshots provide evidence of the laboratory activities:
+
+1. `screenshots/vulnerable-app-running.png` – Successful Nginx response.
+2. `screenshots/firewall-activated.png` – Active UFW firewall and default policies.
+3. `screenshots/firewall-port-allowed.png` – Numbered firewall rules and successful curl request.
+
+## Conclusion
+
+This mission helped me understand the importance of securing a server by controlling incoming network traffic. I learned that a firewall should allow only the connections needed by the application while blocking unnecessary access. Proper firewall configuration and continuous monitoring help reduce security risks in cloud environments.
